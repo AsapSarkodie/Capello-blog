@@ -55,13 +55,13 @@ body{
    border-radius: 10px;
 }
 .sign{
-    width: 45px;
+    width: 55px;
     border: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgba(192, 192, 192, 0.315);
     border-radius: 4px;
     height: 20px;
-    
+ 
 }
 #HomePage nav .dropdown ul{
    list-style: none;

@@ -55,13 +55,21 @@
    border-radius: 10px;
 }
 .sign{
-    width: 30px;
-    height: 30px;
+    width: auto;
+    height: auto;
     border: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgba(192, 192, 192, 0.315);
-    border-radius: 50%;
-    
+    display: flex;
+}
+.sign img{
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+}
+.sign span{
+   font-size: 12px;
+   vertical-align: bottom;
+
 }
 .Blog nav .dropdown ul{
    list-style: none;
@@ -275,4 +283,5 @@
 }
 .d-more.reveal{
    display: block;
+   position: sticky;
 }

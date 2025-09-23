@@ -1,3 +1,4 @@
+
 let menu = document.querySelector('#menu');
 let dropdown = document.querySelector('.dropdown');
 let body = document.querySelector('#HomePage');
@@ -91,7 +92,7 @@ all.forEach(el => observer.observe(el));
 
     items.forEach((item)=>{
         item.addEventListener('click', ()=>{
-         //  mainBlog.style.height = 'auto'
+       
            if (popPage.classList.contains('revealit')) {
                popPage.classList.remove('revealit')
            } else {
