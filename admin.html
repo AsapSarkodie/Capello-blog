@@ -4,9 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin page</title>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    Admin Page
+   <section class="main">
+    <div class="toggle-me"> <img class="menu" id="menu" src="image/menu_22dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="hum"></div>
+    <nav id="ad-nav">
+       <div class="close">X</div>
+       <ul>
+        <li><img src="image/home_22dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="home-icon"> <a href="index.html">Home</a></li>
+        <li><img src="image/newspaper_22dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""><a href="blog.html">Blog</a></li>
+        <li><img src="image/diversity_2_22dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""><a href="">Community</a></li>
+       </ul>
+    </nav>
+    <div class="admin-form">
+      <div class="ad-con">
+       <h1>Admin Panel</h1> 
+       <p>Manage your blog content and more</p> 
+      </div>
+       <form action="">
+         <h4>Add new post</h4>
+         <label for="title">Title</label>
+         <input class="title" placeholder="   Enter post title" type="text">
+         <label for="content">Content</label>
+         <textarea placeholder="  write your post content here" name="" id="content"></textarea>
+         <select name="category" id="">Select a category</select>
+           <option value="category">motivation</option>
+       </form>
+    </div>
+   </section>
+   
     
+
+   <script src="admin.js"></script>
 </body>
 </html>

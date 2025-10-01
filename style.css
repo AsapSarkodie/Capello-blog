@@ -34,7 +34,7 @@ body{
    box-shadow: 5px 5px 5px rgba(164, 164, 164, 0.24);
    position: fixed;
    z-index: 1000;
-   background: rgba(255, 255, 255, 0.642);
+   background: rgb(255, 255, 255);
 }
 #HomePage nav img{
    padding-right: 12px;

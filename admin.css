@@ -1,0 +1,82 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+@font-face {
+    font-family: abel;
+    src: url(fonts/Abel-Regular.ttf);
+}
+.main{
+    width: 100%;
+    height: 100vh;
+}
+nav{
+    height: 100vh;
+    width: 30%;
+    box-shadow: 5px 5px 5px rgba(131, 131, 131, 0.329);
+    transform: translate(-100%);
+    transition: 0.3s ease;
+    z-index: 100;
+    background-color: whitesmoke;
+}
+nav.side{
+    transform: translate(0%);
+}
+.close{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 10px;
+     background-color: white;
+}
+ul {
+    margin-top: 30px;
+    padding-bottom: 5px;
+}
+ul li{
+    padding-top: 0px;
+    display: flex;
+    align-items: center;
+    padding-left: 2px;
+    margin-bottom: 6px;
+    height: 45px;
+    cursor: pointer;
+}
+ul li:hover{
+    background: rgba(32, 231, 231, 0.262);
+  
+}
+ul li a:hover{
+     color: darkcyan;
+}
+ul li a{
+   padding-left: 5px ;
+   color: black;
+   text-decoration: none;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.toggle-me{
+    position: absolute;
+    cursor: pointer;
+    z-index: 3;
+}
+.admin-form{
+    width: 100%;
+    height: 100vh;
+    background: rebeccapurple;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+.ad-con{
+    padding-left: 10px;
+}
+.ad-con h1{
+    font-family: abel;
+     padding-left: 20px;
+}
+.ad-con p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 20px;
+}    

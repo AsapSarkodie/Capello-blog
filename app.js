@@ -146,6 +146,30 @@ all.forEach(el => observer.observe(el));
         }
 
      });
+
+
+    //admin
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //THANK GOD
     
     
