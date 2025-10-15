@@ -99,6 +99,7 @@ label{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 input{
+    font-size: 14px;
     outline: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;
@@ -181,5 +182,9 @@ textarea::placeholder{
     font-size: 37px;
     margin-left: 30px;
     margin-top: 50px;
+}
+nav{
+    width: 20%;
+   
 }
 }
