@@ -205,6 +205,28 @@
     position: relative;
     min-width: 100%;
   }
+  .sm-page.revealit {
+    display: block;
+    top: 0;
+    position: absolute;
+    position: fixed;
+  }
+  .sm-page {
+    width: 50% !important;
+    height: 470px; /*470px */
+    background-color: white;
+    border-radius: 10px;
+    display: none;
+    z-index: 100;
+    box-shadow: 5px 5px 5px rgba(120, 120, 120, 0.1);
+  }
+  .to-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+  }
 }
 .blog-card {
   width: 112%;
@@ -344,10 +366,10 @@
 }
 .sm-page.revealit {
   display: block;
-  margin-top: -1cm;
+  margin-top: 5cm;
   position: absolute;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   position: fixed;
 }
 .d-more {
