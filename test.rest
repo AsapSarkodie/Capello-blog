@@ -1,0 +1,17 @@
+###
+
+GET http://localhost:5000/poems
+
+###
+
+GET http://localhost:5000/api/poems
+
+###
+POST http://localhost:5000/poems
+Content-Type: application/json
+
+
+{
+  "title": "My First Poem",
+  "content": "This is the content of my first poem."
+}

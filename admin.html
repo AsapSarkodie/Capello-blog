@@ -1,65 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin page</title>
-    <link rel="stylesheet" href="admin.css">
-</head>
-<body>
-   <section class="main">
-    <div class="toggle-me"><img class="menu" id="menu" src="image/menu_22dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="hum">
-    <div class="spanit">
-      <h2>Admin panel</h2>
-      <p class="ss">Upload new poems here</p>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <section class="main">
+      <div class="toggle-me">
+        <img
+          class="menu"
+          id="menu"
+          src="image/menu_22dp_000000_FILL0_wght400_GRAD0_opsz24.png"
+          alt="hum"
+        />
+        <div class="spanit">
+          <h2>Admin panel</h2>
+          <p class="ss">Upload new poems here</p>
 
-      <form action="" method="post">
-         <div class="form-con">
-            <h3>add post</h3>
-             <!--title-->
-             <div class="form-group">
-              <label for="title">Title</label><br>
-              <input placeholder="  Enter post title" id="title" type="text">
-             </div>
-             <div class="form-group">
-             <label for="content">content</label><br>
-             <textarea placeholder="  Enter post content here" name="content" id="content"></textarea>
-             </div>
-             <!--choose category-->
-             <div class="form-group">
-                <label for="category">category</label><br>
-             <select name="" id="category">
-               <option value="">Select a category</option>
-               <option value="Tech">tech</option>
-               <option value="">Life</option>
-               <option value="">Africa</option>
-             </select>
-             </div>
-             <!--upload images-->
-             <div class="form-group">
-                <label for="file">Upload image</label><br>
-                 <input type="file" name="img" id="img-file">
-             </div>
-            <!--submit button-->
-             <div class="form-group">
-               <input type="submit" name="" id="btn-sub">
-             </div>
-         </div>
-      </form>
-    </div>
-   </div>
-     <nav id="ad-nav">
-       <div class="close">X</div>
-       <ul>
-        <li><img src="image/home_22dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="home-icon"> <a href="index.html">Home</a></li>
-        <li><img src="image/newspaper_22dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""><a href="blog.html">Blog</a></li>
-        <li><img src="image/diversity_2_22dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""><a href="">Community</a></li>
-       </ul>
-     </nav>
-   </section>
-   
-    
+          <form action="" method="post">
+            <div class="form-con">
+              <h3>add post</h3>
+              <!--title-->
+              <div class="form-group">
+                <label for="title">Title</label><br />
+                <input
+                  placeholder="  Enter post title"
+                  name="title"
+                  id="title"
+                  type="text"
+                />
+              </div>
+              <div class="form-group">
+                <label for="content">content</label><br />
+                <textarea
+                  placeholder="  Enter post content here"
+                  name="content"
+                  id="content"
+                ></textarea>
+              </div>
+              <!--choose category-->
+              <div class="form-group">
+                <label for="category">category</label><br />
+                <select name="" id="category">
+                  <option value="">Select a category</option>
+                  <option value="Tech">tech</option>
+                  <option value="">Life</option>
+                  <option value="">Africa</option>
+                </select>
+              </div>
+              <!--upload images-->
+              <div class="form-group">
+                <label for="file">Upload image</label><br />
+                <input type="file" name="img" id="img-file" />
+              </div>
+              <!--submit button-->
+              <div class="form-group">
+                <button type="submit" name="submit" id="btn-sub">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <nav id="ad-nav">
+        <div class="close">X</div>
+        <ul>
+          <li>
+            <img
+              src="image/home_22dp_000000_FILL0_wght400_GRAD0_opsz24.png"
+              alt="home-icon"
+            />
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <img
+              src="image/newspaper_22dp_000000_FILL0_wght400_GRAD0_opsz24.png"
+              alt=""
+            /><a href="blog.html">Blog</a>
+          </li>
+          <li>
+            <img
+              src="image/diversity_2_22dp_000000_FILL0_wght400_GRAD0_opsz24.png"
+              alt=""
+            /><a href="">Community</a>
+          </li>
+        </ul>
+      </nav>
+    </section>
 
-   <script src="admin.js"></script>
-</body>
+    <script src="admin.js"></script>
+  </body>
 </html>
