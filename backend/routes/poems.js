@@ -7,12 +7,12 @@ routes.use(express.json());
 //GET all poems
 routes.get("/", async (req, res) => {
   try {
-    console.log(`working`);
-
+    console.log(`get route is working`);
+    // admins.username AS author
     const result = await pool.query(`
-        SELECT poems.id, poems.title, poems.content, admins.username AS author, poems.created_at
-        FROM poems, admins
-       ORDER BY poems.created_at DESC
+        SELECT poems.id, poems.title, poems.content, poems.created_at
+        FROM poems
+        ORDER BY poems.created_at DESC
         `);
 
     res.json(result.rows);

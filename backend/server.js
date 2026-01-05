@@ -10,6 +10,7 @@ const app = express();
 //middlewares
 app.use(express.json());
 app.use(cors());
+//gets the request from poem.js in the routes folder
 app.use("/poems", poemRoutes);
 
 //main page
