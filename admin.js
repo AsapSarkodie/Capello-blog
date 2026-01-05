@@ -2,8 +2,6 @@
 let toggle = document.querySelector("#menu");
 let adNav = document.querySelector("#ad-nav");
 let closeBtn = document.querySelector(".close");
-let submit = document.querySelector("#btn-sub");
-let category = document.querySelector("#category");
 
 //show nav bar
 toggle.addEventListener("click", () => {
@@ -19,6 +17,8 @@ closeBtn.addEventListener("click", () => {
 const poemForm = document.querySelector("form");
 const titleInput = document.getElementById("title");
 const contentInput = document.getElementById("content");
+const category = document.querySelector("#category");
+const poemImage = document.getElementById("imgs");
 
 // --- Form Submission Logic ---
 poemForm.addEventListener("submit", async (e) => {
@@ -29,6 +29,8 @@ poemForm.addEventListener("submit", async (e) => {
   const poemData = {
     title: titleInput.value,
     content: contentInput.value,
+    image: poemImage.files[0],
+    category: category.value,
   };
 
   try {

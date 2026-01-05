@@ -20,9 +20,14 @@
           data.map((pp) => {
             let h3 = document.createElement("h3");
             let p = document.createElement("p");
+            let image = document.createElement("img");
+            let category = document.createElement("p");
+            image.src = pp.image_path;
             h3.textContent = pp.title;
             p.textContent = pp.content;
-            box.append(h3, p);
+            category.textContent = pp.categories;
+
+            box.append(image, h3, p, category);
           });
           console.log(data);
         } catch (error) {

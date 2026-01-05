@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 //gets the request from poem.js in the routes folder
 app.use("/poems", poemRoutes);
-
+app.use("/img_path", express.static("img_path"));
 //main page
 app.get("/api/poems", (req, res) => {
   res.send({

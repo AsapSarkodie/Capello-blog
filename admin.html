@@ -19,7 +19,7 @@
           <h2>Admin panel</h2>
           <p class="ss">Upload new poems here</p>
 
-          <form action="" method="post">
+          <form action="" method="post" enctype="multipart/form-data">
             <div class="form-con">
               <h3>add post</h3>
               <!--title-->
@@ -46,14 +46,14 @@
                 <select name="" id="category">
                   <option value="">Select a category</option>
                   <option value="Tech">tech</option>
-                  <option value="">Life</option>
-                  <option value="">Africa</option>
+                  <option value="Life">Life</option>
+                  <option value="Africa">Africa</option>
                 </select>
               </div>
               <!--upload images-->
               <div class="form-group">
                 <label for="file">Upload image</label><br />
-                <input type="file" name="img" id="img-file" />
+                <input id="imgs" type="file" name="image" id="img-file" />
               </div>
               <!--submit button-->
               <div class="form-group">
