@@ -24,5 +24,5 @@ app.get("/api/poems", (req, res) => {
 //from chat
 
 app.listen(PORT, () => {
-  console.log(`server is running on ${PORT}`);
+  console.log(`server is running on ${PORT} 🫧`);
 });
