@@ -15,3 +15,14 @@ Content-Type: application/json
   "title": "My First Poem",
   "content": "This is the content of my first poem."
 }
+
+
+###   
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+   "name":"Sarkodie",
+   "email": "kyei@gmail.com",
+   "password": "asass"
+}

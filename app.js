@@ -128,6 +128,7 @@ items.forEach((item) => {
     });
   });
 });
+
 closeBtn.addEventListener("click", () => {
   if (popPage.classList.contains("revealit")) {
     popPage.classList.remove("revealit");
