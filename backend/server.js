@@ -14,7 +14,6 @@ app.use(cors());
 
 //gets the request from poem.js in the routes folder
 app.use("/poems", poemRoutes);
-app.use("/img_path", express.static("img_path"));
 
 //auth routes
 app.use("/auth", authRoutes);
@@ -29,5 +28,5 @@ app.get("/api/poems", (req, res) => {
 //from chat
 
 app.listen(PORT, () => {
-  console.log(`server is running on ${PORT} 🫧`);
+  console.log(`server is running on ${PORT} 👽`);
 });

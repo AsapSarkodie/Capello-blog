@@ -7,7 +7,7 @@ routes.use(express.json());
 //GET all poems
 routes.get("/", async (req, res) => {
   try {
-    console.log(`get route is working 🤑`);
+    console.log(`poem fetching route is working 🤑`);
     // admins.username AS author
     const result = await pool.query(`
         SELECT poems.id, poems.title, poems.content, poems.created_at, poems.categories, poems.image_path
