@@ -28,6 +28,8 @@ authForm.addEventListener("submit", async (e) => {
         body: JSON.stringify(signUpData),
       });
 
+      console.log(await response.json());
+
       alert("Sign up was successful");
       console.log("SignUp was successful");
 

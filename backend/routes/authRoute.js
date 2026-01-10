@@ -5,7 +5,7 @@ import pool from "../db.js";
 
 const router = express.Router();
 
-//registration route
+//registration route || Sign up route
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
@@ -17,15 +17,19 @@ router.post("/register", async (req, res) => {
       [name, email, hashedPassword]
     );
     res.status(201); //created
-    /*create token
+
+    //create token
     const user = response.rows[0].id;
-    const token = jwt.sign({ id: user }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
-    res.json({ token });*/
-    res.json({
-      message: true,
-    });
+    const token = jwt.sign(
+      { id: user, role: "admin" },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1d",
+      }
+    );
+    res.json({ token });
+    console.log({ token: token });
+
     console.log(`Sign up was successful`);
   } catch (error) {
     console.log(error);
@@ -37,13 +41,26 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const check = await pool.query("SELECT * FROM admins WHERE email = $1 ", [
+    const getUser = await pool.query("SELECT * FROM admins WHERE email = $1 ", [
       email,
     ]);
-    console.log(check.rows[0]);
-    res.json({
-      user: check.rows[0],
+    if (getUser.rows.length === 0) {
+      return res.status(404).send({ message: "user not found" });
+    }
+    // else res.status(200).send({ second: getUser.rows });
+
+    const passwordIsValid = bcrypt.compareSync(
+      password,
+      getUser.rows[0].password_hash
+    );
+    if (!passwordIsValid) {
+      return res.status(401).send({ message: "Invalid password" });
+    }
+    //then we have a successful authentication
+    const token = jwt.sign({ id: getUser.rows.id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
     });
+    res.send({ token });
   } catch (error) {
     console.log(error);
     res.status(500);

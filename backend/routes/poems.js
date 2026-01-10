@@ -4,7 +4,7 @@ import pool from "../db.js";
 const routes = express.Router();
 
 routes.use(express.json());
-//GET all poems
+//GET all poems || fetching poems
 routes.get("/", async (req, res) => {
   try {
     console.log(`poem fetching route is working 🤑`);
