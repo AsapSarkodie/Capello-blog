@@ -4,7 +4,7 @@
 }
 @font-face {
   font-family: abel;
-  src: url(fonts/Abel-Regular.ttf);
+  src: url(/frontend/fonts/Abel-Regular.ttf);
 }
 /* Blog Page Styling */
 .Blog {

@@ -14,11 +14,11 @@ menu.addEventListener("click", (e) => {
 //change content image
 //change every 1.5 seconds
 const images = [
-  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(image/15.jpg)",
-  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(image/pexels-rahimart-33930075.jpg)",
-  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(image/pexels-sandra-gopan-2152650968-32312788.jpg)",
-  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(image/pexels-silviopelegrin-33621286.jpg)",
-  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(image/girl.jpg)",
+  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/15.jpg)",
+  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/pexels-rahimart-33930075.jpg)",
+  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/pexels-sandra-gopan-2152650968-32312788.jpg)",
+  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/pexels-silviopelegrin-33621286.jpg)",
+  "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/girl.jpg)",
 ];
 let index = 0;
 
