@@ -1,9 +1,63 @@
 import express from "express";
 import pool from "../db.js";
-
+import multer from "multer";
+import fs from "fs";
+import path from "path";
+import cors from "cors";
 const routes = express.Router();
 
+//middleware
 routes.use(express.json());
+routes.use(cors());
+//checks if there is a folder to upload in, if there is not it creates one
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const dir = "uploads";
+
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+
+    cb(null, dir);
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+//allow only images to be uploaded
+const fileFilter = function (req, file, cb) {
+  if (file.mimetype == "image/png" || file.mimetype == "image/jpeg") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const upload = multer({ storage, fileFilter });
+
+// POST a poem (admin)
+routes.post("/", upload.single("image"), async (req, res) => {
+  console.log(`post route is working! 🥶`);
+
+  const { title, content, category } = req.body;
+  const image = req.file;
+  console.log(req.file);
+
+  try {
+    if (!title || !content || !category) {
+      return res.status(400).json({ error: "Missing fields" });
+    }
+    const result = await pool.query(
+      "INSERT INTO poems (title, content, image_path, categories) VALUES ($1, $2, $3, $4) RETURNING *",
+      [title, content, image.path, category]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+export default routes;
+
 //GET all poems || fetching poems
 routes.get("/", async (req, res) => {
   try {
@@ -20,43 +74,6 @@ routes.get("/", async (req, res) => {
     console.log(error.message);
   }
 });
+//learn about the routes ../ // and all
 
-// POST a poem (admin)
-routes.post("/", async (req, res) => {
-  console.log(`post route is working! 🥶`);
-
-  const { title, content, image, category } = req.body;
-  try {
-    if (!title || !content || !category) {
-      return res.status(400).json({ error: "Missing fields" });
-    }
-    const result = await pool.query(
-      "INSERT INTO poems (title, content, image_path, categories) VALUES ($1, $2, $3, $4) RETURNING *",
-      [title, content, image, category]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-export default routes;
-
-/*
-import multer from "multer";
-import path from "path";
-
-// 2. Configure where to store images and what to name them
-const storage = multer.diskStorage({
-  destination: "img_paths/", // Ensure this folder exists in your project root
-  filename: (req, file, cb) => {
-    // Create a unique filename: timestamp + original extension
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-
-});
-
-const upload = multer({ storage: storage });
-upload.single("image")
-const ImagePath = req.file ? `/img_paths/${req.file.filename}` : null;
-*/
+//and how to change the value of sql column eg from text to varchar

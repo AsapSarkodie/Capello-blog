@@ -17,12 +17,14 @@
         try {
           const poem = await fetch(`http://localhost:5000/poems`);
           const data = await poem.json();
+
           data.map((pp) => {
             let h3 = document.createElement("h3");
             let p = document.createElement("p");
             let image = document.createElement("img");
             let category = document.createElement("p");
-            image.src = pp.image_path;
+            image.src = `http://localhost:5000/${pp.image_path}`;
+            image.style.width = "90px";
             h3.textContent = pp.title;
             p.textContent = pp.content;
             category.textContent = pp.categories;

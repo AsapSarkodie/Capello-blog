@@ -26,22 +26,18 @@ poemForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   // Prepare the data object
-  const poemData = {
-    title: titleInput.value,
-    content: contentInput.value,
-    image: poemImage.files[0],
-    category: category.value,
-  };
+  const poemData = new FormData();
+
+  poemData.append("title", titleInput.value);
+  poemData.append("content", contentInput.value);
+  poemData.append("image", poemImage.files[0]);
+  poemData.append("category", category.value);
 
   try {
     const response = await fetch("http://localhost:5000/poems", {
       method: "POST",
-      headers: {
-        // This is the most important part!
-        // It tells your backend to use express.json()
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(poemData),
+
+      body: poemData,
     });
 
     const result = await response.json();
