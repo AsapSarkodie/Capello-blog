@@ -4,15 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testing site</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .boom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .space {
+        width: 95vw;
+      }
+    </style>
   </head>
   <body>
     <a href="admin.html">Admin page</a>
-    <div class="space"></div>
+    <div class="boom">
+      <div class="space"></div>
+    </div>
     <button>test</button>
     <script>
       let btn = document.querySelector("button");
       let box = document.querySelector(".space");
-
       const getData = async () => {
         try {
           const poem = await fetch(`http://localhost:5000/poems`);
