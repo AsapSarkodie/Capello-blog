@@ -13,7 +13,7 @@ router.post("/register", async (req, res) => {
   try {
     //saving registration to admins table
     const response = await pool.query(
-      "INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *",
+      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
       [name, email, hashedPassword]
     );
     res.status(201); //created
