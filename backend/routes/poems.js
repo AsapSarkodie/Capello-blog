@@ -43,7 +43,7 @@ routes.post("/", upload.single("image"), async (req, res) => {
   console.log(req.file);
 
   try {
-    if (!title || !content || !category) {
+    if (!title || !content || !category || !image) {
       return res.status(400).json({ error: "Missing fields" });
     }
     const result = await pool.query(
@@ -72,6 +72,18 @@ routes.get("/", async (req, res) => {
     res.json(result.rows);
   } catch (error) {
     console.log(error.message);
+  }
+});
+//GET recent poems
+routes.get("/recents", async (req, res) => {
+  try {
+    console.log("recents routes working");
+    const result = await pool.query(`
+        SELECT * FROM poems ORDER BY poems.created_at DESC LIMIT 3
+      `);
+    res.json(result.rows);
+  } catch (error) {
+    res.send(error);
   }
 });
 //learn about the routes ../ // and all

@@ -26,3 +26,6 @@ Content-Type: application/json
    "email": "thebismarksarkodie@gmail.com",
    "password": "asass"
 }
+
+###
+GET http://localhost:5000/poems/recents

@@ -13,7 +13,7 @@ router.post("/register", async (req, res) => {
   try {
     //saving registration to admins table
     const response = await pool.query(
-      "INSERT INTO admins (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *",
+      "INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *",
       [name, email, hashedPassword]
     );
     res.status(201); //created
@@ -41,7 +41,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const getUser = await pool.query("SELECT * FROM admins WHERE email = $1 ", [
+    const getUser = await pool.query("SELECT * FROM users WHERE email = $1 ", [
       email,
     ]);
     if (getUser.rows.length === 0) {
@@ -71,3 +71,4 @@ export default router;
 //why $1 when querying
 //how to campare password with hashed password
 //why check.rows[0] is returning undefined
+//add create a new users table with roles
