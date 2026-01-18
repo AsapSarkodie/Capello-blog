@@ -7,16 +7,20 @@ const router = express.Router();
 
 //registration route || Sign up route
 router.post("/register", async (req, res) => {
+  console.log("sign up route working");
+
   const { name, email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
   console.log(`passworded encrypted successfully`);
   try {
     //saving registration to admins table
     const response = await pool.query(
-      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
-      [name, email, hashedPassword]
+      "INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *",
+      [name, email, hashedPassword],
     );
-    res.status(201); //created
+    res.status(201).json({
+      message: "user created successfully",
+    }); //created
 
     //create token
     const user = response.rows[0].id;
@@ -25,7 +29,7 @@ router.post("/register", async (req, res) => {
       process.env.JWT_SECRET,
       {
         expiresIn: "1d",
-      }
+      },
     );
     res.json({ token });
     console.log({ token: token });
@@ -51,7 +55,7 @@ router.post("/login", async (req, res) => {
 
     const passwordIsValid = bcrypt.compareSync(
       password,
-      getUser.rows[0].password_hash
+      getUser.rows[0].password_hash,
     );
     if (!passwordIsValid) {
       return res.status(401).send({ message: "Invalid password" });
@@ -61,6 +65,7 @@ router.post("/login", async (req, res) => {
       expiresIn: "1d",
     });
     res.send({ token });
+    //check if user is admin
   } catch (error) {
     console.log(error);
     res.status(500);

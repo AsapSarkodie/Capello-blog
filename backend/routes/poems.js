@@ -48,7 +48,7 @@ routes.post("/", upload.single("image"), async (req, res) => {
     }
     const result = await pool.query(
       "INSERT INTO poems (title, content, image_path, categories) VALUES ($1, $2, $3, $4) RETURNING *",
-      [title, content, image.path, category]
+      [title, content, image.path, category],
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
@@ -66,7 +66,7 @@ routes.get("/", async (req, res) => {
     const result = await pool.query(`
         SELECT poems.id, poems.title, poems.content, poems.created_at, poems.categories, poems.image_path
         FROM poems
-        ORDER BY poems.created_at DESC
+        ORDER BY poems.created_at ASC
         `);
 
     res.json(result.rows);
@@ -74,7 +74,8 @@ routes.get("/", async (req, res) => {
     console.log(error.message);
   }
 });
-//GET recent poems
+
+//GET recent poems to the home page
 routes.get("/recents", async (req, res) => {
   try {
     console.log("recents routes working");
