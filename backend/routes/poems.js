@@ -66,12 +66,31 @@ routes.get("/", async (req, res) => {
     const result = await pool.query(`
         SELECT poems.id, poems.title, poems.content, poems.created_at, poems.categories, poems.image_path
         FROM poems
-        ORDER BY poems.created_at ASC
+        ORDER BY poems.created_at ASC LIMIT 10
         `);
 
     res.json(result.rows);
   } catch (error) {
     console.log(error.message);
+  }
+});
+
+//GET poems by filter
+routes.get("/filter/:category", async (req, res) => {
+  try {
+    const category = req.params.category; //check how it works
+    console.log(category);
+
+    const result = await pool.query(
+      `SELECT * FROM poems WHERE categories = $1
+      ORDER BY poems.created_at ASC`,
+      [category],
+    );
+    res.json(result.rows);
+  } catch (error) {
+    res.json({
+      message: "error:" + error,
+    });
   }
 });
 

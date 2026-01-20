@@ -43,7 +43,7 @@ const observer = new IntersectionObserver(
   {
     rootMargin: "12px",
     threshold: 0.2,
-  }
+  },
 );
 
 let all = document.querySelectorAll("#animate");
