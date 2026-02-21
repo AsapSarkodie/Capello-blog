@@ -36,7 +36,7 @@ const upload = multer({ storage, fileFilter });
 
 // POST a poem (admin)
 routes.post("/", upload.single("image"), async (req, res) => {
-  console.log(`post route is working! 🥶`);
+  console.log(`post route is working!`);
 
   const { title, content, category } = req.body;
   const image = req.file;
@@ -64,7 +64,7 @@ routes.get("/", async (req, res) => {
     console.log(`poem fetching route is working 🤑`);
     // admins.username AS author
     const result = await pool.query(`
-        SELECT poems.id, poems.title, poems.content, poems.created_at, poems.categories, poems.image_path
+        SELECT *
         FROM poems
         ORDER BY poems.created_at ASC LIMIT 10
         `);
