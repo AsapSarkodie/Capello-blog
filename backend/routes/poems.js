@@ -9,6 +9,7 @@ const routes = express.Router();
 //middleware
 routes.use(express.json());
 routes.use(cors());
+
 //checks if there is a folder to upload in, if there is not it creates one
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
