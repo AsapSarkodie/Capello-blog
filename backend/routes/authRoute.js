@@ -49,28 +49,51 @@ router.post("/login", async (req, res) => {
       email,
     ]);
     if (getUser.rows.length === 0) {
-      return res.status(404).send({ message: "user not found" });
+      res.status(404).json({
+        message: "user not found",
+      });
     }
-    // else res.status(200).send({ second: getUser.rows });
 
-    const passwordIsValid = bcrypt.compareSync(
-      password,
-      getUser.rows[0].password_hash,
-    );
+    //get user
+    const user = getUser.rows[0];
+
+    //compare provided password with the hashed password in the database
+    const passwordIsValid = bcrypt.compareSync(password, user.password_hash);
+
+    //invalid password logic
     if (!passwordIsValid) {
       return res.status(401).send({ message: "Invalid password" });
     }
     //then we have a successful authentication
-    const token = jwt.sign({ id: getUser.rows.id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "3d",
+      },
+    );
+    res.json({
+      message: "Sign in successful",
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      },
     });
-    res.send({ token });
     //check if user is admin
   } catch (error) {
     console.log(error);
-    res.status(500);
+    res.status(500).json({
+      message: "intenal server error",
+    });
   }
 });
+
+router.get("/admin/post-page", verifyToken, verifyAdmin, (req, res) => {
+  res.sendFile("post.html", { root: "public" });
+});
+
 export default router;
 
 //why $1 when querying

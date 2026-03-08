@@ -100,7 +100,7 @@ routes.get("/recents", async (req, res) => {
   try {
     console.log("recents routes working");
     const result = await pool.query(`
-        SELECT * FROM poems ORDER BY poems.created_at DESC LIMIT 3
+        SELECT * FROM poems ORDER BY poems.created_at DESC LIMIT 4
       `);
     res.json(result.rows);
   } catch (error) {
