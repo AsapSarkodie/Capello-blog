@@ -11,30 +11,30 @@ router.post("/register", async (req, res) => {
 
   const { name, email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
-  console.log(`passworded encrypted successfully`);
+  if (hashedPassword) {
+    console.log(`passworded encrypted successfully`);
+  }
   try {
     //saving registration to admins table
     const response = await pool.query(
       "INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *",
       [name, email, hashedPassword],
     );
+    //get userID
+    const userID = response.rows[0].id;
+    //generate token
+    const token = jwt.sign(
+      { id: userID, role: "user", name: response.rows[0].username },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" },
+    );
+
     res.status(201).json({
       message: "user created successfully",
+      token,
     }); //created
-
+    console.log(token);
     //create token
-    const user = response.rows[0].id;
-    const token = jwt.sign(
-      { id: user, role: "admin" },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1d",
-      },
-    );
-    res.json({ token });
-    console.log({ token: token });
-
-    console.log(`Sign up was successful`);
   } catch (error) {
     console.log(error);
     res.status(500);
@@ -42,56 +42,53 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  console.log("user has hit the login route");
+
   const { email, password } = req.body;
 
   try {
-    const getUser = await pool.query("SELECT * FROM users WHERE email = $1 ", [
-      email,
-    ]);
-    if (getUser.rows.length === 0) {
+    if (!email || !password) {
       res.status(404).json({
+        message: "Missing fields ",
+      });
+    }
+    const response = await pool.query(
+      `
+      SELECT * FROM users WHERE email = $1`,
+      [email],
+    );
+
+    if (response.rows.length === 0) {
+      return res.json({
         message: "user not found",
       });
     }
+    const user = response.rows[0];
 
-    //get user
-    const user = getUser.rows[0];
-
-    //compare provided password with the hashed password in the database
-    const passwordIsValid = bcrypt.compareSync(password, user.password_hash);
-
-    //invalid password logic
-    if (!passwordIsValid) {
-      return res.status(401).send({ message: "Invalid password" });
+    const isMatch = await bcrypt.compare(password, user.password_hash);
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "invalid Credentials",
+      });
     }
-    //then we have a successful authentication
+    // 5. Sign a JWT that includes the user's role from the DB
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
+      { id: user.id, role: user.role, name: user.username }, // role comes from your users table
       process.env.JWT_SECRET,
-      {
-        expiresIn: "3d",
-      },
+      { expiresIn: "1d" },
     );
-    res.json({
-      message: "Sign in successful",
+    return res.status(200).json({
+      message: "Login successful",
       token,
-      user: {
-        id: user.id,
-        email: user.email,
-        role: user.role,
-      },
+      role: user.role, // frontend reads this to decide the redirect
     });
-    //check if user is admin
   } catch (error) {
     console.log(error);
-    res.status(500).json({
-      message: "intenal server error",
+
+    return res.status(500).json({
+      message: error,
     });
   }
-});
-
-router.get("/admin/post-page", verifyToken, verifyAdmin, (req, res) => {
-  res.sendFile("post.html", { root: "public" });
 });
 
 export default router;

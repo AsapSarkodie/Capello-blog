@@ -90,7 +90,7 @@ routes.get("/filter/:category", async (req, res) => {
     res.json(result.rows);
   } catch (error) {
     res.json({
-      message: "error:" + error,
+      message: `error: ${error}`,
     });
   }
 });
