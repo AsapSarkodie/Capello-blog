@@ -27,7 +27,11 @@ const storage = multer.diskStorage({
 });
 //allow only images to be uploaded
 const fileFilter = function (req, file, cb) {
-  if (file.mimetype == "image/png" || file.mimetype == "image/jpeg") {
+  if (
+    file.mimetype == "image/png" ||
+    file.mimetype == "image/jpeg" ||
+    file.mimetype === "image/webp"
+  ) {
     cb(null, true);
   } else {
     cb(null, false);
@@ -80,7 +84,7 @@ routes.get("/", async (req, res) => {
 routes.get("/filter/:category", async (req, res) => {
   try {
     const category = req.params.category; //check how it works
-    console.log(category);
+    console.log(`${category} button has been clicked`);
 
     const result = await pool.query(
       `SELECT * FROM poems WHERE categories = $1
