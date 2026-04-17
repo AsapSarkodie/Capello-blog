@@ -7,7 +7,7 @@ const router = express.Router();
 
 //registration route || Sign up route
 router.post("/register", async (req, res) => {
-  console.log("sign up route working");
+  console.log("signup route is being accessed..");
 
   const { name, email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
@@ -42,7 +42,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  console.log("user has hit the login route");
+  console.log("sign-in route is being accessed..");
 
   const { email, password } = req.body;
 

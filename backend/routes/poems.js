@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
       fs.mkdirSync(dir);
     }
 
-    cb(null, dir);
+    cb(null, dir); //no error, file saves in dir (uploads folder)
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -35,13 +35,14 @@ const fileFilter = function (req, file, cb) {
     cb(null, true);
   } else {
     cb(null, false);
+    console.log("file uploaded is not (png/jpeg/webp)");
   }
 };
 const upload = multer({ storage, fileFilter });
 
 // POST a poem (admin)
 routes.post("/", upload.single("image"), async (req, res) => {
-  console.log(`post route is working!`);
+  console.log(`post route is being accessed..`);
 
   const { title, content, category } = req.body;
   const image = req.file;
@@ -49,6 +50,7 @@ routes.post("/", upload.single("image"), async (req, res) => {
 
   try {
     if (!title || !content || !category || !image) {
+      console.log("missing fields");
       return res.status(400).json({ error: "Missing fields" });
     }
     const result = await pool.query(
@@ -71,7 +73,7 @@ routes.get("/", async (req, res) => {
     const result = await pool.query(`
         SELECT *
         FROM poems
-        ORDER BY poems.created_at ASC LIMIT 10
+        ORDER BY poems.created_at ASC LIMIT 11
         `);
 
     res.json(result.rows);
