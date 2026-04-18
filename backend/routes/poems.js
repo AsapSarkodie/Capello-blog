@@ -68,7 +68,7 @@ export default routes;
 //GET all poems || fetching poems
 routes.get("/", async (req, res) => {
   try {
-    console.log(`poem fetching route is working 🤑`);
+    console.log(`poem fetching route is working`);
     // admins.username AS author
     const result = await pool.query(`
         SELECT *
