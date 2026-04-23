@@ -51,7 +51,7 @@ routes.post("/", upload.single("image"), async (req, res) => {
   try {
     if (!title || !content || !category || !image) {
       console.log("missing fields");
-      return res.status(400).json({ error: "Missing fields" });
+      return res.status(400).json({ error: "MISSING_FIELDS" });
     }
     const result = await pool.query(
       "INSERT INTO poems (title, content, image_path, categories) VALUES ($1, $2, $3, $4) RETURNING *",

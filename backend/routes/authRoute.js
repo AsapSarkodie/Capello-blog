@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
     );
 
     res.status(201).json({
-      message: "user created successfully",
+      message: "USER_CREATED_SUCCESSFULLY",
       token,
     }); //created
     console.log(token);
@@ -49,7 +49,7 @@ router.post("/login", async (req, res) => {
   try {
     if (!email || !password) {
       res.status(404).json({
-        message: "Missing fields ",
+        message: "MISSING_FEILDS ",
       });
     }
     const response = await pool.query(
@@ -60,7 +60,7 @@ router.post("/login", async (req, res) => {
 
     if (response.rows.length === 0) {
       return res.json({
-        message: "user not found",
+        message: "USER_NOT_FOUND",
       });
     }
     const user = response.rows[0];
@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
       return res.status(400).json({
-        message: "invalid Credentials",
+        message: "INVALID_CREDENTIALS",
       });
     }
     // 5. Sign a JWT that includes the user's role from the DB
@@ -78,7 +78,7 @@ router.post("/login", async (req, res) => {
       { expiresIn: "1d" },
     );
     return res.status(200).json({
-      message: "Login successful",
+      message: "LOGGED_IN_SUCCEFUL",
       token,
       role: user.role, // frontend reads this to decide the redirect
     });
