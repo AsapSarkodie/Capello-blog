@@ -32,3 +32,6 @@ GET http://localhost:5000/poems/recents
 
 ###   
 GET http://localhost:5000/poems/filter/Earth
+
+### 
+DELETE http://localhost:5000/poems/remove/9

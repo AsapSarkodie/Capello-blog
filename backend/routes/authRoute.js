@@ -33,7 +33,6 @@ router.post("/register", async (req, res) => {
       message: "USER_CREATED_SUCCESSFULLY",
       token,
     }); //created
-    console.log(token);
     //create token
   } catch (error) {
     console.log(error);

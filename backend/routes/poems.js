@@ -100,6 +100,22 @@ routes.get("/filter/:category", async (req, res) => {
     });
   }
 });
+//Delete a poem
+routes.delete("/remove/:id", async (req, res) => {
+  try {
+    const poemId = req.params.id;
+
+    const result = await pool.query(`DELETE FROM poems WHERE id = $1`, [
+      poemId,
+    ]);
+    res.status(200).json({
+      message: "delete successful",
+    });
+    console.log(`poem with id ${poemId} has been deleted`);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 //GET recent poems to the home page
 routes.get("/recents", async (req, res) => {
