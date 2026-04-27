@@ -111,6 +111,7 @@ routes.delete("/remove/:id", async (req, res) => {
     res.status(200).json({
       message: "delete successful",
     });
+
     console.log(`poem with id ${poemId} has been deleted`);
   } catch (error) {
     console.log(error);
