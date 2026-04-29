@@ -100,6 +100,7 @@ routes.get("/filter/:category", async (req, res) => {
     });
   }
 });
+
 //Delete a poem
 routes.delete("/remove/:id", async (req, res) => {
   try {
@@ -113,6 +114,14 @@ routes.delete("/remove/:id", async (req, res) => {
     });
 
     console.log(`poem with id ${poemId} has been deleted`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//Edit a poem
+routes.put("/edit/:id", async (req, res) => {
+  try {
   } catch (error) {
     console.log(error);
   }
