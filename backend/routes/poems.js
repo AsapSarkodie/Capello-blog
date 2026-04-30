@@ -122,8 +122,22 @@ routes.delete("/remove/:id", async (req, res) => {
 //Edit a poem
 routes.put("/edit/:id", async (req, res) => {
   try {
+    console.log("edit route has been accessed");
+    //getting the new contents
+    const { title, content } = req.body;
+    const id = req.params.id;
+    const editresult = await pool.query(
+      `UPDATE poems SET title = $1, content = $2 WHERE id = $3`,
+      [title, content, id],
+    );
+    res.status(200).json({
+      message: "poem edited successfully",
+    });
   } catch (error) {
     console.log(error);
+    res.json({
+      message: `error ${error}`,
+    });
   }
 });
 
