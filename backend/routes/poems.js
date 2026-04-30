@@ -126,6 +126,7 @@ routes.put("/edit/:id", async (req, res) => {
     //getting the new contents
     const { title, content } = req.body;
     const id = req.params.id;
+    //insert it in the database
     const editresult = await pool.query(
       `UPDATE poems SET title = $1, content = $2 WHERE id = $3`,
       [title, content, id],
