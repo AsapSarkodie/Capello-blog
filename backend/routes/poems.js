@@ -134,6 +134,7 @@ routes.put("/edit/:id", async (req, res) => {
     res.status(200).json({
       message: "poem edited successfully",
     });
+    console.log("edit successful");
   } catch (error) {
     console.log(error);
     res.json({
