@@ -79,6 +79,9 @@ routes.get("/", async (req, res) => {
     res.json(result.rows);
   } catch (error) {
     console.log(error.message);
+    res.json({
+      message: "FAILED_TO_FETCH_ALL_POEMS",
+    });
   }
 });
 
@@ -116,6 +119,9 @@ routes.delete("/remove/:id", async (req, res) => {
     console.log(`poem with id ${poemId} has been deleted`);
   } catch (error) {
     console.log(error);
+    res.json({
+      message: "FAILED_TO_DELETE",
+    });
   }
 });
 
