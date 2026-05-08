@@ -6,7 +6,7 @@ import path from "path";
 import cors from "cors";
 const routes = express.Router();
 
-//middleware
+//Global middleware
 routes.use(express.json());
 routes.use(cors());
 
@@ -113,7 +113,7 @@ routes.delete("/remove/:id", async (req, res) => {
       poemId,
     ]);
     res.status(200).json({
-      message: "delete successful",
+      message: "DELETE_SUCCESFUL",
     });
 
     console.log(`poem with id ${poemId} has been deleted`);
@@ -138,7 +138,7 @@ routes.put("/edit/:id", async (req, res) => {
       [title, content, id],
     );
     res.status(200).json({
-      message: "poem edited successfully",
+      message: "EDIT_SUCCESSFUL",
     });
     console.log("edit successful");
   } catch (error) {
