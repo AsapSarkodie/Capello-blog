@@ -36,7 +36,9 @@ router.post("/register", async (req, res) => {
     //create token
   } catch (error) {
     console.log(error);
-    res.status(500);
+    res.status(500).json({
+      message: "COULDNT_REGISTER_USER",
+    });
   }
 });
 

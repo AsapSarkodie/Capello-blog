@@ -24,5 +24,5 @@ app.listen(PORT, () => {
 //how can i add email notification
 //read about the dependencies on their website
 /*
-      "INSERT INTO poems (title, content, image_path, categories) VALUES ($1, $2, $3, $4) RETURNING *" what does the returning does
+  "INSERT INTO poems (title, content, image_path, categories) VALUES ($1, $2, $3, $4) RETURNING *" what does the returning does
  */
