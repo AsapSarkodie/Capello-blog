@@ -8,7 +8,7 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-//middlewares
+// global middlewares
 app.use(express.json());
 app.use(cors());
 
@@ -19,7 +19,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/auth", authRoutes);
 
 app.listen(PORT, () => {
-  console.log(`server is running on ${PORT} 👽`);
+  console.log(`poem server is running on ${PORT} 👽`);
 });
 //how can i add email notification
 //read about the dependencies on their website
