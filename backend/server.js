@@ -4,6 +4,7 @@ import cors from "cors";
 import poemRoutes from "./routes/poems.js";
 import authRoutes from "./routes/authRoute.js";
 
+//setup .env so that the values there can be used
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 

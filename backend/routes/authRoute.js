@@ -61,7 +61,7 @@ router.post("/login", async (req, res) => {
 
     if (response.rows.length === 0) {
       return res.json({
-        message: "USER_NOT_FOUND",
+        message: "USER_NOT_FOUND!",
       });
     }
     const user = response.rows[0];
