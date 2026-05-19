@@ -120,7 +120,7 @@ routes.delete("/remove/:id", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "FAILED_TO_DELETE",
+      message: `FAILED_TO_DELETE: ${error}`,
     });
   }
 });
