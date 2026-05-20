@@ -46,10 +46,10 @@ routes.post("/", upload.single("image"), async (req, res) => {
 
   const { title, content, category } = req.body;
   const image = req.file;
-  console.log(req.file);
+  console.log(image.path);
 
   try {
-    if (!title || !content || !category || !image) {
+    if (!title && !content && !category && !image) {
       console.log("missing fields");
       return res.status(400).json({ error: "MISSING_FIELDS" });
     }
