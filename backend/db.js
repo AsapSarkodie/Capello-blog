@@ -25,11 +25,6 @@ Why: This tells the pg library exactly where and how to find your database.
  */
 const pool = new Pool({
   user: process.env.DB_USER,
-  /*
-  What is the Host?
-  Just like you need a URL (like google.com) to visit a website,
-  your Node.js application needs a host to find your PostgreSQL database.
-   */
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
@@ -37,3 +32,8 @@ const pool = new Pool({
 });
 
 export default pool;
+/*
+  What is the Host?
+  Just like you need a URL (like google.com) to visit a website,
+  your Node.js application needs a host to find your PostgreSQL database.
+   */

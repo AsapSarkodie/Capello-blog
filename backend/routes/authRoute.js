@@ -2,7 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import pool from "../db.js";
-
+import verifyHeader from "../middleware/adminMiddleware.js";
 const router = express.Router();
 
 //registration route || Sign up route
@@ -11,8 +11,11 @@ router.post("/register", async (req, res) => {
 
   const { name, email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
-  if (hashedPassword) {
-    console.log(`passworded encrypted successfully`);
+  //check if bcrypt worked
+  if (!hashedPassword) {
+    console.log(`failed to encrypt password`);
+  } else {
+    console.log(`password encrypted successfully..`);
   }
   try {
     //saving registration to admins table
@@ -21,6 +24,7 @@ router.post("/register", async (req, res) => {
       [name, email, hashedPassword],
     );
     //get userID
+
     const userID = response.rows[0].id;
     //generate token
     const token = jwt.sign(
@@ -41,6 +45,8 @@ router.post("/register", async (req, res) => {
     });
   }
 });
+
+//Login in process
 
 router.post("/login", async (req, res) => {
   console.log("sign-in route is being accessed..");
@@ -80,7 +86,7 @@ router.post("/login", async (req, res) => {
     );
     return res.status(200).json({
       message: "LOGGED_IN_SUCCEFUL",
-      token,
+      token: token,
       role: user.role, // frontend reads this to decide the redirect
     });
   } catch (error) {
